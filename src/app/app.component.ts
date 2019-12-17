@@ -57,6 +57,7 @@ export class AppComponent  {
       nom: 'TypeDef' ,
       abstrait: false ,
       champs: [
+        { nom: 'abstrait' , type: 'boolean'},
         { nom: 'nom' , type: 'string'},
         { nom: 'champs' , type: '*Champ'},
         { nom: 'sousTypes' , type: '*TypeDef'}
