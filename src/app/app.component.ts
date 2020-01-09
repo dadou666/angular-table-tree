@@ -9,6 +9,13 @@ import { ConfigTest } from './test.config';
 })
 export class AppComponent  {
  types: Type[] = [
+   {
+     nom:'Types',
+     abstrait:false,
+     champs: [ 
+       { nom:'types' , type:'*TypeDef'}
+     ]
+   },
     {
       nom: 'Type',
       abstrait: true
@@ -71,7 +78,7 @@ export class AppComponent  {
     this.typeService = new TypeService();
     this.typeService.init(this.types);
     this.configArbre = new ConfigTest();
-    this.objet = this.typeService.creerObjet('TypeDef');
+    this.objet = this.typeService.creerObjet('Types');
 
    }
 
