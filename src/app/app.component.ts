@@ -79,6 +79,7 @@ export class AppComponent  {
     this.typeService.init(this.types);
     this.configArbre = new ConfigTest();
     this.objet = this.typeService.creerObjet('Types');
+    console.log("Test")
 
    }
 
