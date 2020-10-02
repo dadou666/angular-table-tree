@@ -1,0 +1,107 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "SouscriptionVeloElectrique",
+        "version": "1.0.0",
+        "description": "API de souscription d'assurance pour vélo électrique"
+    },
+    "paths": {
+        "/souscrire": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "Les données pour souscrire une contrat",
+                        "schema": {
+                            "$ref": "#/definitions/Contrat"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Le numéro de contrat",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "application/json": "666666666"
+                        }
+                    }
+                },
+                "description": "Cette opération créé un contrat à partir d'un vélo et d'une personne et return le numéro de contrat"
+            }
+        }
+    },
+    "definitions": {
+        "Velo": {
+            "description": "Le vélo du contrat",
+            "required": [
+                "marque",
+                "numeroCadre",
+                "numeroAntiVol"
+            ],
+            "type": "object",
+            "properties": {
+                "marque": {
+                    "description": "Marque du vélo",
+                    "type": "string"
+                },
+                "modele": {
+                    "description": "Modele du vélo",
+                    "type": "string"
+                },
+                "numeroCadre": {
+                    "description": "Numéro de cadre du vélo",
+                    "type": "string"
+                },
+                "numeroAntiVol": {
+                    "description": "Numéro d'anti vol",
+                    "type": "string"
+                }
+            }
+        },
+        "Personne": {
+            "description": "Personne qui souscrit le contrat",
+            "required": [
+                "nom",
+                "prenom",
+                "email"
+            ],
+            "type": "object",
+            "properties": {
+                "nom": {
+                    "description": "nom de la personne",
+                    "type": "string"
+                },
+                "prenom": {
+                    "description": "prenom de la personne",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "",
+                    "type": "string"
+                }
+            }
+        },
+        "Contrat": {
+            "description": "contrat d'assurance du vélo",
+            "required": [
+                "personne",
+                "velo"
+            ],
+            "type": "object",
+            "properties": {
+                "personne": {
+                    "$ref": "#/definitions/Personne",
+                    "description": "Personne "
+                },
+                "velo": {
+                    "$ref": "#/definitions/Velo",
+                    "description": "Velo"
+                }
+            }
+        }
+    }
+}
