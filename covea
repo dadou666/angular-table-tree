@@ -1,7 +1,7 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "SouscriptionVeloElectrique",
+        "title": "Souscription assurance vélo électrique",
         "version": "1.0.0",
         "description": "API de souscription d'assurance pour vélo électrique"
     },
