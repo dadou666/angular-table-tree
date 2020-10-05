@@ -5,6 +5,12 @@
         "version": "1.0.0",
         "description": "API de souscription d'assurance pour vélo électrique"
     },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
     "paths": {
         "/contrat/consulter": {
             "get": {
