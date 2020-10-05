@@ -6,7 +6,42 @@
         "description": "API de souscription d'assurance pour vélo électrique"
     },
     "paths": {
-        "/souscrire": {
+        "/contrat/consulter": {
+            "get": {
+                "parameters": [
+                    {
+                        "name": "numero",
+                        "description": "",
+                        "in": "query",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Contrat"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "personne": {
+                                    "nom": "some text",
+                                    "prenom": "some text",
+                                    "email": "some text"
+                                },
+                                "velo": {
+                                    "marque": "some text",
+                                    "modele": "some text",
+                                    "numeroCadre": "some text",
+                                    "numeroAntiVol": "some text"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/contrat/souscrire": {
             "post": {
                 "parameters": [
                     {
