@@ -79,6 +79,9 @@
             "delete": {
 
             }
+        },
+        "/contrat/consulter/": {
+
         }
     },
     "definitions": {
