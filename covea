@@ -74,6 +74,11 @@
                 },
                 "description": "Cette opération créé un contrat à partir d'un vélo et d'une personne et return le numéro de contrat"
             }
+        },
+        "/contrat/supprimer": {
+            "delete": {
+
+            }
         }
     },
     "definitions": {
