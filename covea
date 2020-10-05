@@ -38,7 +38,8 @@
                             }
                         }
                     }
-                }
+                },
+                "description": "Cette opération permet de récupérer un contrat par son numéro"
             }
         },
         "/contrat/souscrire": {
