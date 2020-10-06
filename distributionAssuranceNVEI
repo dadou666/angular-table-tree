@@ -1,8 +1,149 @@
 {
-    "openapi": "3.0.2",
+    "swagger": "2.0",
     "info": {
         "title": "Souscription et tarification assurance NVEI",
         "version": "1.0.0",
         "description": "Souscription et tarification assurance NVEI"
+    },
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/contrat/souscrire": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "Les données pour souscrire une contrat",
+                        "schema": {
+                            "$ref": "#/definitions/Contrat"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Le numéro de contrat",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "application/json": "666666666"
+                        }
+                    }
+                },
+                "description": "Souscrire un contrat d'assurance pour une personne et un objet de risque fournit en paramètre"
+            }
+        },
+        "/contrat/tarifer": {
+            "post": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "schema": {
+                            "$ref": "#/definitions/NVEI"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "schema": {
+                            "$ref": "#/definitions/Tarif"
+                        }
+                    }
+                },
+                "summary": "Créer un tarif d'assurance pour le vélo fournit en paramètre"
+            }
+        }
+    },
+    "definitions": {
+        "Personne": {
+            "description": "Personne qui souscrit le contrat",
+            "required": [
+                "nom",
+                "prenom",
+                "email"
+            ],
+            "type": "object",
+            "properties": {
+                "nom": {
+                    "description": "nom de la personne",
+                    "type": "string"
+                },
+                "prenom": {
+                    "description": "prenom de la personne",
+                    "type": "string"
+                },
+                "email": {
+                    "description": "",
+                    "type": "string"
+                }
+            }
+        },
+        "Contrat": {
+            "description": "contrat d'assurance du vélo",
+            "required": [
+                "personne",
+                "vehicule"
+            ],
+            "type": "object",
+            "properties": {
+                "personne": {
+                    "$ref": "#/definitions/Personne",
+                    "description": "Personne "
+                },
+                "vehicule": {
+                    "$ref": "#/definitions/NVEI",
+                    "description": ""
+                }
+            }
+        },
+        "NVEI": {
+            "description": "Le vélo du contrat",
+            "required": [
+            ],
+            "type": "object",
+            "properties": {
+                "marque": {
+                    "description": "",
+                    "type": "string"
+                }
+            }
+        },
+        "Tarif": {
+            "description": "",
+            "required": [
+                "montant",
+                "periode",
+                "dateFinValidite"
+            ],
+            "type": "object",
+            "properties": {
+                "montant": {
+                    "description": "",
+                    "type": "number"
+                },
+                "periode": {
+                    "description": "",
+                    "enum": [
+                        "Annuel",
+                        "Mensuel",
+                        "Trimestriel"
+                    ],
+                    "type": "string"
+                },
+                "dateFinValidite": {
+                    "format": "date",
+                    "description": "",
+                    "type": "string"
+                }
+            }
+        }
     }
 }
