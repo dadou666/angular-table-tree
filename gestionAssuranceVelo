@@ -82,7 +82,8 @@
                         },
                         "description": "Liste de contrats pour les critères de recherche"
                     }
-                }
+                },
+                "summary": "Rechercher les contrats en fonction du nom et du prénom d'une personne"
             },
             "parameters": [
                 {
@@ -125,7 +126,8 @@
                             }
                         }
                     }
-                }
+                },
+                "summary": "Déclarer un sinistre pour un contrat"
             }
         }
     },
