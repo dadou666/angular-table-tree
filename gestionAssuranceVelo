@@ -51,7 +51,8 @@
                         },
                         "description": "Contrat non trouvé"
                     }
-                }
+                },
+                "summary": "Consulter un contrat pour un numéro de contrat"
             },
             "parameters": [
                 {
