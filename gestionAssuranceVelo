@@ -26,7 +26,7 @@
 
                     }
                 },
-                "summary": "Cette api permet de résilier un contrat"
+                "summary": "Résilier un contrat"
             }
         },
         "/contrat/consulter": {
