@@ -1,0 +1,195 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Gestion sinistre et contrat assurance chiens et chats",
+        "version": "1.0.0",
+        "description": "Gestion sinistre et contrat assurance chiens et chats"
+    },
+    "paths": {
+        "/contrat/resilier": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Declaration"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+
+                    },
+                    "404": {
+
+                    }
+                },
+                "summary": "Résilier un contrat"
+            }
+        },
+        "/contrat/consulter": {
+            "summary": "Consulter un contrat pour un numéro de contrat",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Contrat"
+                                }
+                            }
+                        },
+                        "description": "Contrat pour le numéro passé en paramètre de l'api"
+                    },
+                    "404": {
+                        "content": {
+                            "application/json": {
+
+                            }
+                        },
+                        "description": "Contrat non trouvé"
+                    }
+                },
+                "summary": "Consulter un contrat pour un numéro fournit en paramètre"
+            },
+            "parameters": [
+                {
+                    "name": "numero",
+                    "description": "",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": true
+                }
+            ]
+        },
+        "/contrats/rechercher": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Contrat"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Liste de contrats pour les critères de recherche"
+                    }
+                },
+                "summary": "Rechercher des contrats en fonction du nom et du prénom d'une personne"
+            },
+            "parameters": [
+                {
+                    "name": "nom",
+                    "description": "Nom d'une personne ayant souscrit un contrat",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                },
+                {
+                    "name": "prenom",
+                    "description": "Prenom d'une personne ayant souscrit un contrat",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query"
+                }
+            ]
+        },
+        "/sinistre/declarer": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Declaration"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Sinistre"
+                                }
+                            }
+                        }
+                    }
+                },
+                "summary": "Déclarer un sinistre pour un contrat"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Contrat": {
+                "$ref": "apicurio:30097#/definitions/Contrat"
+            },
+            "Personne": {
+                "$ref": "apicurio:30097#/definitions/Personne"
+            },
+            "Resiliation": {
+                "description": "Donnée pour la résiliation d'un contrat",
+                "required": [
+                    "numeroContrat",
+                    "dateResiliation"
+                ],
+                "type": "object",
+                "properties": {
+                    "numeroContrat": {
+                        "description": "Numéro du contrat a résilier",
+                        "type": "string"
+                    },
+                    "dateResiliation": {
+                        "format": "date-time",
+                        "description": "Date de résiliation du contrat",
+                        "type": "string"
+                    }
+                }
+            },
+            "Declaration": {
+                "description": "",
+                "required": [
+                    "numercoContrat",
+                    "dateSinistre"
+                ],
+                "type": "object",
+                "properties": {
+                    "numercoContrat": {
+                        "description": "Numéro du contrat de la déclaration de sinistre",
+                        "type": "string"
+                    },
+                    "dateSinistre": {
+                        "format": "date-time",
+                        "description": "Date de déclaration du sinistre",
+                        "type": "string"
+                    }
+                }
+            },
+            "Sinistre": {
+                "description": "Sinistre créé suite à une déclaration",
+                "required": [
+                    "numeroSinistre"
+                ],
+                "type": "object",
+                "properties": {
+                    "numeroSinistre": {
+                        "description": "Numéro du sinistre déclaré",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
