@@ -1,0 +1,8 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "Gestion sinistre et contrat assurance NVEI",
+        "version": "1.0.0",
+        "description": "Gestion sinistre et contrat assurance NVEI"
+    }
+}
