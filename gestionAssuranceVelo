@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.2",
     "info": {
-        "title": "Gestion sinistre et contrat assurance vélo électrique",
+        "title": "Gestion assurance vélo électrique",
         "version": "1.0.0",
         "description": "Gestion sinistre et contrat assurance vélo électrique"
     },
@@ -12,7 +12,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Declaration"
+                                "$ref": "#/components/schemas/Contrat"
                             }
                         }
                     },
@@ -38,6 +38,23 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Contrat"
+                                },
+                                "examples": {
+                                    "exemple1": {
+                                        "value": {
+                                            "personne": {
+                                                "nom": "some text",
+                                                "prenom": "some text",
+                                                "email": "some text"
+                                            },
+                                            "velo": {
+                                                "marque": "some text",
+                                                "modele": "some text",
+                                                "numeroCadre": "some text",
+                                                "numeroAntiVol": "some text"
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         },
@@ -133,15 +150,6 @@
     },
     "components": {
         "schemas": {
-            "Contrat": {
-                "$ref": "apicurio:30097#/definitions/Contrat"
-            },
-            "Personne": {
-                "$ref": "apicurio:30097#/definitions/Personne"
-            },
-            "Velo": {
-                "$ref": "apicurio:30097#/definitions/Velo"
-            },
             "Resiliation": {
                 "description": "Donnée pour la résiliation d'un contrat",
                 "required": [
@@ -183,12 +191,85 @@
             "Sinistre": {
                 "description": "Sinistre créé suite à une déclaration",
                 "required": [
-                    "numeroSinistre"
+                    "numeroSinistre",
+                    "numeroContrat"
                 ],
                 "type": "object",
                 "properties": {
                     "numeroSinistre": {
                         "description": "Numéro du sinistre déclaré",
+                        "type": "string"
+                    },
+                    "numeroContrat": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Contrat": {
+                "description": "contrat d'assurance du vélo",
+                "required": [
+                    "personne",
+                    "velo"
+                ],
+                "type": "object",
+                "properties": {
+                    "personne": {
+                        "$ref": "#/components/schemas/Personne",
+                        "description": "Personne "
+                    },
+                    "velo": {
+                        "$ref": "#/components/schemas/Velo",
+                        "description": "Velo"
+                    }
+                }
+            },
+            "Personne": {
+                "description": "Personne qui souscrit le contrat",
+                "required": [
+                    "nom",
+                    "prenom",
+                    "email"
+                ],
+                "type": "object",
+                "properties": {
+                    "nom": {
+                        "description": "nom de la personne",
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "description": "prenom de la personne",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Velo": {
+                "description": "Le vélo du contrat",
+                "required": [
+                    "marque",
+                    "numeroCadre",
+                    "numeroAntiVol"
+                ],
+                "type": "object",
+                "properties": {
+                    "marque": {
+                        "description": "Marque du vélo",
+                        "type": "string"
+                    },
+                    "modele": {
+                        "description": "Modele du vélo",
+                        "type": "string"
+                    },
+                    "numeroCadre": {
+                        "description": "Numéro de cadre du vélo",
+                        "type": "string"
+                    },
+                    "numeroAntiVol": {
+                        "description": "Numéro d'anti vol",
                         "type": "string"
                     }
                 }
