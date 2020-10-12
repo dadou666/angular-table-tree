@@ -1,126 +1,207 @@
 {
-    "swagger": "2.0",
+    "openapi": "3.0.2",
     "info": {
-        "title": "Souscription et tarification assurance vélo électrique",
+        "title": "Distribution assurance vélo électrique",
         "version": "1.0.0",
-        "description": "Souscription et tarification assurance vélo électrique"
+        "description": "Distribution assurance vélo électrique"
     },
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
     "paths": {
         "/contrat/souscrire": {
             "post": {
-                "parameters": [
-                    {
-                        "name": "body",
-                        "description": "Les données pour souscrire une contrat",
-                        "schema": {
-                            "$ref": "#/definitions/Contrat"
-                        },
-                        "in": "body",
-                        "required": true
-                    }
-                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Contrat"
+                            },
+                            "examples": {
+                                "exemple1": {
+                                    "value": {
+                                        "personne": {
+                                            "nom": "some text",
+                                            "prenom": "some text",
+                                            "email": "some text"
+                                        },
+                                        "velo": {
+                                            "marque": "some text",
+                                            "modele": "some text",
+                                            "numeroCadre": "some text",
+                                            "numeroAntiVol": "some text"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
                 "responses": {
                     "200": {
-                        "description": "Le numéro de contrat",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "examples": {
-                            "application/json": "666666666"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "examples": {
+                                    "exemple1": {
+                                        "value": "\"some text\""
+                                    }
+                                }
+                            }
                         }
                     }
-                },
-                "description": "Souscrire un contrat d'assurance pour une personne et un objet de risque fournit en paramètre"
+                }
             }
         },
-        "/contrat/tarifer": {
+        "/contrat/tarifer/": {
             "post": {
-                "parameters": [
-                    {
-                        "name": "body",
-                        "schema": {
-                            "$ref": "#/definitions/Velo"
-                        },
-                        "in": "body",
-                        "required": true
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Contrat"
+                            },
+                            "examples": {
+                                "exemple1": {
+                                    "value": {
+                                        "personne": {
+                                            "nom": "some text",
+                                            "prenom": "some text",
+                                            "email": "some text"
+                                        },
+                                        "velo": {
+                                            "marque": "some text",
+                                            "modele": "some text",
+                                            "numeroCadre": "some text",
+                                            "numeroAntiVol": "some text"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Tarif"
+                                },
+                                "examples": {
+                                    "exemple1": {
+                                        "value": {
+                                            "montant": 94.21,
+                                            "periode": "Trimestriel",
+                                            "dateFinValidite": "2021-01-17"
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                ],
-                "summary": "Créer un tarif d'assurance pour le vélo fournit en paramètre"
+                }
             }
         }
     },
-    "definitions": {
-        "Velo": {
-            "description": "Le vélo du contrat",
-            "required": [
-                "marque",
-                "numeroCadre",
-                "numeroAntiVol"
-            ],
-            "type": "object",
-            "properties": {
-                "marque": {
-                    "description": "Marque du vélo",
-                    "type": "string"
-                },
-                "modele": {
-                    "description": "Modele du vélo",
-                    "type": "string"
-                },
-                "numeroCadre": {
-                    "description": "Numéro de cadre du vélo",
-                    "type": "string"
-                },
-                "numeroAntiVol": {
-                    "description": "Numéro d'anti vol",
-                    "type": "string"
+    "components": {
+        "schemas": {
+            "Personne": {
+                "description": "Personne qui souscrit le contrat",
+                "required": [
+                    "nom",
+                    "prenom",
+                    "email"
+                ],
+                "type": "object",
+                "properties": {
+                    "nom": {
+                        "description": "nom de la personne",
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "description": "prenom de la personne",
+                        "type": "string"
+                    },
+                    "email": {
+                        "description": "",
+                        "type": "string"
+                    }
                 }
-            }
-        },
-        "Personne": {
-            "description": "Personne qui souscrit le contrat",
-            "required": [
-                "nom",
-                "prenom",
-                "email"
-            ],
-            "type": "object",
-            "properties": {
-                "nom": {
-                    "description": "nom de la personne",
-                    "type": "string"
-                },
-                "prenom": {
-                    "description": "prenom de la personne",
-                    "type": "string"
-                },
-                "email": {
-                    "description": "",
-                    "type": "string"
+            },
+            "Contrat": {
+                "description": "contrat d'assurance du vélo",
+                "required": [
+                    "personne",
+                    "velo"
+                ],
+                "type": "object",
+                "properties": {
+                    "personne": {
+                        "$ref": "#/components/schemas/Personne",
+                        "description": "Personne "
+                    },
+                    "velo": {
+                        "$ref": "#/components/schemas/Velo",
+                        "description": "Velo"
+                    }
                 }
-            }
-        },
-        "Contrat": {
-            "description": "contrat d'assurance du vélo",
-            "required": [
-                "personne",
-                "velo"
-            ],
-            "type": "object",
-            "properties": {
-                "personne": {
-                    "$ref": "#/definitions/Personne",
-                    "description": "Personne "
-                },
-                "velo": {
-                    "$ref": "#/definitions/Velo",
-                    "description": "Velo"
+            },
+            "Tarif": {
+                "description": "",
+                "required": [
+                    "montant",
+                    "periode",
+                    "dateFinValidite"
+                ],
+                "type": "object",
+                "properties": {
+                    "montant": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "periode": {
+                        "description": "",
+                        "enum": [
+                            "Annuel",
+                            "Mensuel",
+                            "Trimestriel"
+                        ],
+                        "type": "string"
+                    },
+                    "dateFinValidite": {
+                        "format": "date",
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Velo": {
+                "description": "Le vélo du contrat",
+                "required": [
+                    "marque",
+                    "numeroCadre",
+                    "numeroAntiVol"
+                ],
+                "type": "object",
+                "properties": {
+                    "marque": {
+                        "description": "Marque du vélo",
+                        "type": "string"
+                    },
+                    "modele": {
+                        "description": "Modele du vélo",
+                        "type": "string"
+                    },
+                    "numeroCadre": {
+                        "description": "Numéro de cadre du vélo",
+                        "type": "string"
+                    },
+                    "numeroAntiVol": {
+                        "description": "Numéro d'anti vol",
+                        "type": "string"
+                    }
                 }
             }
         }
