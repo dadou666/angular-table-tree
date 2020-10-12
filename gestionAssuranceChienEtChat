@@ -1,9 +1,9 @@
 {
     "openapi": "3.0.2",
     "info": {
-        "title": "Gestion sinistre et contrat assurance chiens et chats",
+        "title": "Gestion assurance chiens et chats",
         "version": "1.0.0",
-        "description": "Gestion sinistre et contrat assurance chiens et chats"
+        "description": "Gestion assurance chiens et chats"
     },
     "paths": {
         "/contrat/resilier": {
@@ -27,7 +27,25 @@
                     }
                 },
                 "summary": "Résilier un contrat"
-            }
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "exemple1": {
+                            "value": {
+
+                            }
+                        }
+                    },
+                    "name": "numeroContrat",
+                    "description": "",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "query",
+                    "required": true
+                }
+            ]
         },
         "/contrat/consulter": {
             "summary": "Consulter un contrat pour un numéro de contrat",
@@ -38,6 +56,24 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Contrat"
+                                },
+                                "examples": {
+                                    "exemple1": {
+                                        "value": {
+                                            "numero": "some text",
+                                            "souscripteur": {
+                                                "nom": "some text",
+                                                "prenom": "some text",
+                                                "dateNaissance": "2018-01-17"
+                                            },
+                                            "velo": {
+                                                "marque": "some text",
+                                                "modele": "some text",
+                                                "numeroCadre": "some text",
+                                                "numeroAntiVol": "some text"
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         },
@@ -133,12 +169,6 @@
     },
     "components": {
         "schemas": {
-            "Contrat": {
-                "$ref": "apicurio:30097#/definitions/Contrat"
-            },
-            "Personne": {
-                "$ref": "apicurio:30097#/definitions/Personne"
-            },
             "Resiliation": {
                 "description": "Donnée pour la résiliation d'un contrat",
                 "required": [
@@ -186,6 +216,80 @@
                 "properties": {
                     "numeroSinistre": {
                         "description": "Numéro du sinistre déclaré",
+                        "type": "string"
+                    }
+                }
+            },
+            "Velo": {
+                "description": "Le vélo du contrat",
+                "required": [
+                    "marque",
+                    "numeroCadre",
+                    "numeroAntiVol"
+                ],
+                "type": "object",
+                "properties": {
+                    "marque": {
+                        "description": "Marque du vélo",
+                        "type": "string"
+                    },
+                    "modele": {
+                        "description": "Modele du vélo",
+                        "type": "string"
+                    },
+                    "numeroCadre": {
+                        "description": "Numéro de cadre du vélo",
+                        "type": "string"
+                    },
+                    "numeroAntiVol": {
+                        "description": "Numéro d'anti vol",
+                        "type": "string"
+                    }
+                }
+            },
+            "Contrat": {
+                "description": "",
+                "required": [
+                    "numero",
+                    "souscripteur",
+                    "velo"
+                ],
+                "type": "object",
+                "properties": {
+                    "numero": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "souscripteur": {
+                        "$ref": "#/components/schemas/Personne",
+                        "description": ""
+                    },
+                    "velo": {
+                        "$ref": "#/components/schemas/Velo",
+                        "description": ""
+                    }
+                }
+            },
+            "Personne": {
+                "description": "",
+                "required": [
+                    "nom",
+                    "prenom",
+                    "dateNaissance"
+                ],
+                "type": "object",
+                "properties": {
+                    "nom": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "prenom": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "dateNaissance": {
+                        "format": "date",
+                        "description": "",
                         "type": "string"
                     }
                 }
