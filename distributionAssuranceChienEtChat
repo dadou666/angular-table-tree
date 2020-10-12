@@ -1,127 +1,48 @@
 {
-    "swagger": "2.0",
+    "openapi": "3.0.2",
     "info": {
-        "title": "Souscription et tarification assurance chiens et chats",
+        "title": " Souscription et tarification assurance chiens et chats",
         "version": "1.0.0",
         "description": "Souscription et tarification assurance chiens et chats"
     },
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
     "paths": {
         "/contrat/souscrire": {
             "post": {
-                "parameters": [
-                    {
-                        "name": "body",
-                        "description": "Les données pour souscrire une contrat",
-                        "schema": {
-                            "$ref": "#/definitions/Contrat"
-                        },
-                        "in": "body",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "Le numéro de contrat",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "examples": {
-                            "application/json": "666666666"
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Contrat"
+                            },
+                            "examples": {
+                                "exemple1": {
+                                    "value": {
+                                        "personne": {
+
+                                        },
+                                        "animal": {
+
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
-                },
-                "description": "Souscrire un contrat d'assurance pour une personne et un objet de risque fournit en paramètre"
-            }
-        },
-        "/contrat/tarifer": {
-            "post": {
-                "parameters": [
-                    {
-                        "name": "body",
-                        "schema": {
-                            "$ref": "#/definitions/Animal"
-                        },
-                        "in": "body",
-                        "required": true
-                    }
-                ],
-                "summary": "Créer un tarif d'assurance pour le vélo fournit en paramètre"
+                    },
+                    "required": true
+                }
             }
         }
     },
-    "definitions": {
-        "Personne": {
-            "description": "Personne qui souscrit le contrat",
-            "required": [
-                "nom",
-                "prenom",
-                "email"
-            ],
-            "type": "object",
-            "properties": {
-                "nom": {
-                    "description": "nom de la personne",
-                    "type": "string"
-                },
-                "prenom": {
-                    "description": "prenom de la personne",
-                    "type": "string"
-                },
-                "email": {
-                    "description": "",
-                    "type": "string"
-                }
-            }
-        },
-        "Contrat": {
-            "description": "contrat d'assurance du vélo",
-            "required": [
-                "personne",
-                "animal"
-            ],
-            "type": "object",
-            "properties": {
-                "personne": {
-                    "$ref": "#/definitions/Personne",
-                    "description": "Personne "
-                },
-                "animal": {
-                    "$ref": "#/definitions/Animal",
-                    "description": "Animal"
-                }
-            }
-        },
-        "Animal": {
-            "description": "Le vélo du contrat",
-            "required": [
-                "type",
-                "dateNaissance"
-            ],
-            "type": "object",
-            "properties": {
-                "type": {
-                    "description": "Chien ou Chat",
-                    "enum": [
-                        "Chat",
-                        "Chient"
-                    ],
-                    "type": "string"
-                },
-                "dateNaissance": {
-                    "format": "date",
-                    "description": "",
-                    "type": "string"
-                },
-                "race": {
-                    "description": "",
-                    "type": "string"
-                }
+    "components": {
+        "schemas": {
+            "Animal": {
+                "$ref": "apicurio:35990#/definitions/Animal"
+            },
+            "Contrat": {
+                "$ref": "apicurio:35990#/definitions/Contrat"
+            },
+            "Personne": {
+                "$ref": "apicurio:35990#/definitions/Personne"
             }
         }
     }
