@@ -6,7 +6,7 @@
         "description": "Distribution assurance NVEI"
     },
     "paths": {
-        "/contrat/souscrire": {
+        "/nvei/contrat/souscrire": {
             "post": {
                 "requestBody": {
                     "content": {
@@ -80,7 +80,7 @@
                 }
             }
         },
-        "/contrat/tarifer/": {
+        "/nvei/contrat/tarifer/": {
             "post": {
                 "requestBody": {
                     "content": {
