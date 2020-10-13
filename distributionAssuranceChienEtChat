@@ -7,6 +7,7 @@
     },
     "paths": {
         "/animal/contrat/souscrire/": {
+            "summary": "Souscrire une assurance pour un chien ou un chat",
             "post": {
                 "requestBody": {
                     "content": {
@@ -87,6 +88,7 @@
             }
         },
         "/animal/contrat/tarifer/": {
+            "summary": "Obtenir un tarif pour une assurer un chien ou un chat",
             "post": {
                 "requestBody": {
                     "content": {
