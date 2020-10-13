@@ -87,10 +87,11 @@
                             }
                         }
                     }
-                }
+                },
+                "summary": "Souscrire une assurance pour un vélo"
             }
         },
-        "/velo/contrat/tarifer/": {
+        "/velo/contrat/tarifer": {
             "summary": "Obtenir un tarif pour assurer un vélo",
             "post": {
                 "requestBody": {
@@ -183,7 +184,8 @@
                             }
                         }
                     }
-                }
+                },
+                "summary": "Obtenir un tarif pour assurer un vélo"
             }
         }
     },
