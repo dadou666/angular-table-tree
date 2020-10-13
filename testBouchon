@@ -1,0 +1,167 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "testBouchon",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/body": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Question"
+                            },
+                            "examples": {
+                                "q0": {
+                                    "value": {
+                                        "nom": "Polipopo",
+                                        "age": 44.43
+                                    }
+                                },
+                                "q1": {
+                                    "value": {
+                                        "nom": "titu",
+                                        "age": 76.61
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Reponse"
+                                },
+                                "examples": {
+                                    "q0": {
+                                        "value": {
+                                            "ville": "moscou",
+                                            "codePostal": "298666"
+                                        }
+                                    },
+                                    "q1": {
+                                        "value": {
+                                            "ville": "tokio",
+                                            "codePostal": "4585"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/query/param": {
+            "get": {
+                "parameters": [
+                    {
+                        "examples": {
+                            "q0": {
+                                "value": "\"Jean\""
+                            },
+                            "q1": {
+                                "value": "\"pierre\""
+                            }
+                        },
+                        "name": "nom",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "examples": {
+                            "q0": {
+                                "value": "\"tend\""
+                            },
+                            "q1": {
+                                "value": "\"dure\""
+                            }
+                        },
+                        "name": "prenom",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Reponse"
+                                },
+                                "examples": {
+                                    "q0": {
+                                        "value": {
+                                            "ville": "titi",
+                                            "codePostal": "koko"
+                                        }
+                                    },
+                                    "q1": {
+                                        "value": {
+                                            "ville": "hello",
+                                            "codePostal": "854"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Question": {
+                "description": "",
+                "required": [
+                    "nom",
+                    "age"
+                ],
+                "type": "object",
+                "properties": {
+                    "nom": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "age": {
+                        "description": "",
+                        "type": "number"
+                    }
+                }
+            },
+            "Reponse": {
+                "description": "",
+                "required": [
+                    "ville",
+                    "codePostal"
+                ],
+                "type": "object",
+                "properties": {
+                    "ville": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "codePostal": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            }
+        }
+    }
+}
