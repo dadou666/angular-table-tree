@@ -6,56 +6,9 @@
         "description": "Gestion assurance NVEI"
     },
     "paths": {
-        "/contrat/resilier": {
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Resiliation"
-                            },
-                            "examples": {
-                                "exemple1": {
-                                    "value": {
-                                        "numeroContrat": "00XE45T",
-                                        "dateResiliation": "2018-02-10T09:30Z"
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-
-                    },
-                    "404": {
-
-                    }
-                },
-                "summary": "Résilier un contrat"
-            }
-        },
         "/contrat/consulter": {
             "summary": "Consulter un contrat pour un numéro de contrat",
             "get": {
-                "parameters": [
-                    {
-                        "examples": {
-                            "exemple1": {
-                                "value": "0XDFE"
-                            }
-                        },
-                        "name": "numero",
-                        "description": "",
-                        "schema": {
-                            "type": "string"
-                        },
-                        "in": "query",
-                        "required": true
-                    }
-                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -66,13 +19,37 @@
                                 "examples": {
                                     "exemple1": {
                                         "value": {
-                                            "personne": {
-                                                "nom": "some text",
-                                                "prenom": "some text",
-                                                "email": "some text"
+                                            "souscripteur": {
+                                                "nom": "Jean",
+                                                "prenom": "Franck",
+                                                "email": "franck.jean@gmail.com"
                                             },
                                             "nvei": {
-                                                "marque": "some text"
+                                                "marque": "Peugeot"
+                                            }
+                                        }
+                                    },
+                                    "exemple2": {
+                                        "value": {
+                                            "souscripteur": {
+                                                "nom": "Loki",
+                                                "prenom": "Sophie",
+                                                "email": "sophie.loki@gmail.com"
+                                            },
+                                            "nvei": {
+                                                "marque": "Sony"
+                                            }
+                                        }
+                                    },
+                                    "exemple3": {
+                                        "value": {
+                                            "souscripteur": {
+                                                "nom": "Robert",
+                                                "prenom": "Phillipe",
+                                                "email": "phillipe.robert@gmail.com"
+                                            },
+                                            "nvei": {
+                                                "marque": "Renault"
                                             }
                                         }
                                     }
@@ -94,6 +71,17 @@
             },
             "parameters": [
                 {
+                    "examples": {
+                        "exemple1": {
+                            "value": "\"XERFDD\""
+                        },
+                        "exemple2": {
+                            "value": "\"XER4585\""
+                        },
+                        "exemple3": {
+                            "value": "\"XER666\""
+                        }
+                    },
                     "name": "numero",
                     "description": "",
                     "schema": {
@@ -104,70 +92,6 @@
                 }
             ]
         },
-        "/contrats/rechercher": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Contrat"
-                                    }
-                                },
-                                "examples": {
-                                    "exemple1": {
-                                        "value": [
-                                            {
-                                                "personne": {
-                                                    "nom": "some text",
-                                                    "prenom": "some text",
-                                                    "email": "some text"
-                                                },
-                                                "nvei": {
-                                                    "marque": "some text"
-                                                }
-                                            },
-                                            {
-                                                "personne": {
-                                                    "nom": "some text",
-                                                    "prenom": "some text",
-                                                    "email": "some text"
-                                                },
-                                                "nvei": {
-                                                    "marque": "some text"
-                                                }
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Liste de contrats pour les critères de recherche"
-                    }
-                },
-                "summary": "Rechercher des contrats en fonction du nom et du prénom d'une personne"
-            },
-            "parameters": [
-                {
-                    "name": "nom",
-                    "description": "Nom d'une personne ayant souscrit un contrat",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "prenom",
-                    "description": "Prenom d'une personne ayant souscrit un contrat",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                }
-            ]
-        },
         "/sinistre/declarer": {
             "post": {
                 "requestBody": {
@@ -175,6 +99,26 @@
                         "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Declaration"
+                            },
+                            "examples": {
+                                "exemple1": {
+                                    "value": {
+                                        "numercoContrat": "XER55",
+                                        "dateSinistre": "2018-02-10T09:30Z"
+                                    }
+                                },
+                                "exemple2": {
+                                    "value": {
+                                        "numercoContrat": "458XE5",
+                                        "dateSinistre": "2019-02-10T09:30Z"
+                                    }
+                                },
+                                "exemple3": {
+                                    "value": {
+                                        "numercoContrat": "CERFOF",
+                                        "dateSinistre": "2020-18-10T09:30Z"
+                                    }
+                                }
                             }
                         }
                     },
@@ -191,6 +135,16 @@
                                     "exemple1": {
                                         "value": {
                                             "numeroSinistre": "N4586X"
+                                        }
+                                    },
+                                    "exemple2": {
+                                        "value": {
+                                            "numeroSinistre": "XER55588"
+                                        }
+                                    },
+                                    "exemple3": {
+                                        "value": {
+                                            "numeroSinistre": "XERF5555"
                                         }
                                     }
                                 }
@@ -258,18 +212,18 @@
             "Contrat": {
                 "description": "contrat d'assurance du vélo",
                 "required": [
-                    "personne",
+                    "souscripteur",
                     "nvei"
                 ],
                 "type": "object",
                 "properties": {
-                    "personne": {
-                        "$ref": "#/components/schemas/Personne",
-                        "description": "Personne "
-                    },
                     "nvei": {
                         "$ref": "#/components/schemas/NVEI",
                         "description": "NVEI\n"
+                    },
+                    "souscripteur": {
+                        "$ref": "#/components/schemas/Personne",
+                        "description": "Personne "
                     }
                 }
             },
