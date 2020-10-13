@@ -6,29 +6,6 @@
         "description": "Gestion sinistre et contrat assurance vélo électrique"
     },
     "paths": {
-        "/contrat/resilier": {
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Contrat"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-
-                    },
-                    "404": {
-
-                    }
-                },
-                "summary": "Résilier un contrat"
-            }
-        },
         "/contrat/consulter": {
             "summary": "Consulter un contrat pour un numéro de contrat",
             "get": {
@@ -42,16 +19,46 @@
                                 "examples": {
                                     "exemple1": {
                                         "value": {
-                                            "personne": {
-                                                "nom": "some text",
-                                                "prenom": "some text",
-                                                "email": "some text"
+                                            "souscripteur": {
+                                                "nom": "La foret",
+                                                "prenom": "Sylvie",
+                                                "email": "sylvie.laforet@gmail.com"
                                             },
                                             "velo": {
-                                                "marque": "some text",
-                                                "modele": "some text",
-                                                "numeroCadre": "some text",
-                                                "numeroAntiVol": "some text"
+                                                "marque": "Peugeot",
+                                                "modele": "Beta1",
+                                                "numeroCadre": "00454545",
+                                                "numeroAntiVol": "55SD"
+                                            }
+                                        }
+                                    },
+                                    "exemple2": {
+                                        "value": {
+                                            "souscripteur": {
+                                                "nom": "Toufe",
+                                                "prenom": "Mathieu",
+                                                "email": "mathieu.toufe@gmail.com"
+                                            },
+                                            "velo": {
+                                                "marque": "Sony",
+                                                "modele": "ERRR5",
+                                                "numeroCadre": "4545eet",
+                                                "numeroAntiVol": "666"
+                                            }
+                                        }
+                                    },
+                                    "exemple3": {
+                                        "value": {
+                                            "souscripteur": {
+                                                "nom": "Etoile",
+                                                "prenom": "Olivier",
+                                                "email": "olivier.etoile@gmail.com"
+                                            },
+                                            "velo": {
+                                                "marque": "Renault",
+                                                "modele": "Gold",
+                                                "numeroCadre": "S01255",
+                                                "numeroAntiVol": "1111ZE"
                                             }
                                         }
                                     }
@@ -73,6 +80,17 @@
             },
             "parameters": [
                 {
+                    "examples": {
+                        "exemple1": {
+                            "value": "\"00XE444E\""
+                        },
+                        "exemple2": {
+                            "value": "\"00XCSD55\""
+                        },
+                        "exemple3": {
+                            "value": "\"0125SSZD5\""
+                        }
+                    },
                     "name": "numero",
                     "description": "",
                     "schema": {
@@ -83,44 +101,6 @@
                 }
             ]
         },
-        "/contrats/rechercher": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Contrat"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Liste de contrats pour les critères de recherche"
-                    }
-                },
-                "summary": "Rechercher des contrats en fonction du nom et du prénom d'une personne"
-            },
-            "parameters": [
-                {
-                    "name": "nom",
-                    "description": "Nom d'une personne ayant souscrit un contrat",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "prenom",
-                    "description": "Prenom d'une personne ayant souscrit un contrat",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                }
-            ]
-        },
         "/sinistre/declarer": {
             "post": {
                 "requestBody": {
@@ -128,6 +108,26 @@
                         "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Declaration"
+                            },
+                            "examples": {
+                                "exemple1": {
+                                    "value": {
+                                        "numercoContrat": "XE7885QQ",
+                                        "dateSinistre": "2018-02-10T09:30Z"
+                                    }
+                                },
+                                "exemple2": {
+                                    "value": {
+                                        "numercoContrat": "XE8874DD",
+                                        "dateSinistre": "2020-02-10T09:30Z"
+                                    }
+                                },
+                                "exemple3": {
+                                    "value": {
+                                        "numercoContrat": "4455ZEDS",
+                                        "dateSinistre": "2018-02-10T09:30Z"
+                                    }
+                                }
                             }
                         }
                     },
@@ -139,6 +139,23 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Sinistre"
+                                },
+                                "examples": {
+                                    "exemple1": {
+                                        "value": {
+                                            "numeroSinistre": "655SEX"
+                                        }
+                                    },
+                                    "exemple2": {
+                                        "value": {
+                                            "numeroSinistre": "55485SD2"
+                                        }
+                                    },
+                                    "exemple3": {
+                                        "value": {
+                                            "numeroSinistre": "8845ZE55"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -191,17 +208,12 @@
             "Sinistre": {
                 "description": "Sinistre créé suite à une déclaration",
                 "required": [
-                    "numeroSinistre",
-                    "numeroContrat"
+                    "numeroSinistre"
                 ],
                 "type": "object",
                 "properties": {
                     "numeroSinistre": {
                         "description": "Numéro du sinistre déclaré",
-                        "type": "string"
-                    },
-                    "numeroContrat": {
-                        "description": "",
                         "type": "string"
                     }
                 }
