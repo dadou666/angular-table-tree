@@ -78,7 +78,8 @@
                             }
                         }
                     }
-                }
+                },
+                "summary": "Souscrire une assurance pour un NVEI"
             }
         },
         "/nvei/contrat/tarifer/": {
@@ -165,7 +166,8 @@
                             }
                         }
                     }
-                }
+                },
+                "summary": "Obtenir un tarif pour assurer un NVEI"
             }
         }
     },
