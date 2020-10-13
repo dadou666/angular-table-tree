@@ -6,7 +6,7 @@
         "description": "Gestion sinistre et contrat assurance vélo électrique"
     },
     "paths": {
-        "/contrat/consulter": {
+        "/velo/contrat/consulter": {
             "summary": "Consulter un contrat pour un numéro de contrat",
             "get": {
                 "responses": {
@@ -101,7 +101,7 @@
                 }
             ]
         },
-        "/sinistre/declarer": {
+        "/velo/sinistre/declarer": {
             "post": {
                 "requestBody": {
                     "content": {
