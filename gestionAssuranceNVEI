@@ -6,7 +6,7 @@
         "description": "Gestion assurance NVEI"
     },
     "paths": {
-        "/contrat/consulter": {
+        "/nvei/contrat/consulter": {
             "summary": "Consulter un contrat pour un numéro de contrat",
             "get": {
                 "responses": {
@@ -92,7 +92,7 @@
                 }
             ]
         },
-        "/sinistre/declarer": {
+        "/nvei/sinistre/declarer": {
             "post": {
                 "requestBody": {
                     "content": {
