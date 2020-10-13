@@ -17,15 +17,43 @@
                             "examples": {
                                 "exemple1": {
                                     "value": {
-                                        "personne": {
-                                            "nom": "some text",
-                                            "prenom": "some text",
-                                            "email": "some text"
+                                        "souscripteur": {
+                                            "nom": "La porte",
+                                            "prenom": "Pierre",
+                                            "email": "pierre.laporte@gmail.com"
                                         },
                                         "animal": {
-                                            "type": "Chient",
-                                            "dateNaissance": "2018-01-17",
-                                            "race": "some text"
+                                            "type": "Chien",
+                                            "dateNaissance": "2017-01-10",
+                                            "race": "caniche"
+                                        }
+                                    }
+                                },
+                                "exemple2": {
+                                    "value": {
+                                        "souscripteur": {
+                                            "nom": "Dupont",
+                                            "prenom": "Prenom",
+                                            "email": "jean.dupont@gmail.com"
+                                        },
+                                        "animal": {
+                                            "type": "Chien",
+                                            "dateNaissance": "2018-01-10",
+                                            "race": "teckel"
+                                        }
+                                    }
+                                },
+                                "exemple3": {
+                                    "value": {
+                                        "souscripteur": {
+                                            "nom": "Olqui",
+                                            "prenom": "Sophie",
+                                            "email": "sophie.olqui@gmail.com"
+                                        },
+                                        "animal": {
+                                            "type": "Chat",
+                                            "dateNaissance": "2017-08-05",
+                                            "race": "Persan"
                                         }
                                     }
                                 }
@@ -43,7 +71,13 @@
                                 },
                                 "examples": {
                                     "exemple1": {
-                                        "value": "\"some text\""
+                                        "value": "\"00XE45855\""
+                                    },
+                                    "exemple2": {
+                                        "value": "\"01ZER555\""
+                                    },
+                                    "exemple3": {
+                                        "value": "\"ERO0125S\""
                                     }
                                 }
                             }
@@ -63,15 +97,43 @@
                             "examples": {
                                 "exemple1": {
                                     "value": {
-                                        "personne": {
-                                            "nom": "some text",
-                                            "prenom": "some text",
-                                            "email": "some text"
+                                        "souscripteur": {
+                                            "nom": "Dupont",
+                                            "prenom": "Marie",
+                                            "email": "marie.dupont@gmail.com"
                                         },
                                         "animal": {
                                             "type": "Chient",
                                             "dateNaissance": "2018-01-17",
-                                            "race": "some text"
+                                            "race": "berger allemand"
+                                        }
+                                    }
+                                },
+                                "exemple2": {
+                                    "value": {
+                                        "souscripteur": {
+                                            "nom": "Dubois",
+                                            "prenom": "Paul",
+                                            "email": "paul.dubois@gmail.com"
+                                        },
+                                        "animal": {
+                                            "type": "Chient",
+                                            "dateNaissance": "2016-01-15",
+                                            "race": "teckel"
+                                        }
+                                    }
+                                },
+                                "exemple3": {
+                                    "value": {
+                                        "souscripteur": {
+                                            "nom": "Pommier",
+                                            "prenom": "Robert",
+                                            "email": "robert.pommier@gmail.com"
+                                        },
+                                        "animal": {
+                                            "type": "Chat",
+                                            "dateNaissance": "2018-01-17",
+                                            "race": "siamois"
                                         }
                                     }
                                 }
@@ -93,6 +155,20 @@
                                             "montant": 94.21,
                                             "periode": "Trimestriel",
                                             "dateFinValidite": "2021-01-17"
+                                        }
+                                    },
+                                    "exemple2": {
+                                        "value": {
+                                            "montant": 74.25,
+                                            "periode": "Annuel",
+                                            "dateFinValidite": "2022-01-10"
+                                        }
+                                    },
+                                    "exemple3": {
+                                        "value": {
+                                            "montant": 8.48,
+                                            "periode": "Mensuel",
+                                            "dateFinValidite": "2021-05-17"
                                         }
                                     }
                                 }
@@ -158,18 +234,18 @@
             "Contrat": {
                 "description": "contrat d'assurance du vélo",
                 "required": [
-                    "personne",
+                    "souscripteur",
                     "animal"
                 ],
                 "type": "object",
                 "properties": {
-                    "personne": {
-                        "$ref": "#/components/schemas/Personne",
-                        "description": "Personne "
-                    },
                     "animal": {
                         "$ref": "#/components/schemas/Animal",
                         "description": "Animal"
+                    },
+                    "souscripteur": {
+                        "$ref": "#/components/schemas/Personne",
+                        "description": "Personne "
                     }
                 }
             },
