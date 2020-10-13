@@ -6,7 +6,7 @@
         "description": "Gestion assurance chiens et chats"
     },
     "paths": {
-        "/contrat/consulter": {
+        "/animal/contrat/consulter": {
             "summary": "Consulter un contrat pour un numéro de contrat",
             "get": {
                 "parameters": [
@@ -109,7 +109,7 @@
                 }
             ]
         },
-        "/sinistre/declarer": {
+        "/animal/sinistre/declarer": {
             "post": {
                 "requestBody": {
                     "content": {
