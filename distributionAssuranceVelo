@@ -17,16 +17,46 @@
                             "examples": {
                                 "exemple1": {
                                     "value": {
-                                        "personne": {
-                                            "nom": "some text",
-                                            "prenom": "some text",
-                                            "email": "some text"
+                                        "souscripteur": {
+                                            "nom": "La foret",
+                                            "prenom": "Sylvie",
+                                            "email": "sylvie.laforet@gmail.com"
                                         },
                                         "velo": {
-                                            "marque": "some text",
-                                            "modele": "some text",
-                                            "numeroCadre": "some text",
-                                            "numeroAntiVol": "some text"
+                                            "marque": "Peugeot",
+                                            "modele": "Beta1",
+                                            "numeroCadre": "00454545",
+                                            "numeroAntiVol": "55SD"
+                                        }
+                                    }
+                                },
+                                "exemple2": {
+                                    "value": {
+                                        "souscripteur": {
+                                            "nom": "Toufe",
+                                            "prenom": "Mathieu",
+                                            "email": "mathieu.toufe@gmail.com"
+                                        },
+                                        "velo": {
+                                            "marque": "Sony",
+                                            "modele": "ERRR5",
+                                            "numeroCadre": "4545eet",
+                                            "numeroAntiVol": "666"
+                                        }
+                                    }
+                                },
+                                "exemple3": {
+                                    "value": {
+                                        "souscripteur": {
+                                            "nom": "Etoile",
+                                            "prenom": "Olivier",
+                                            "email": "olivier.etoile@gmail.com"
+                                        },
+                                        "velo": {
+                                            "marque": "Renault",
+                                            "modele": "Gold",
+                                            "numeroCadre": "S01255",
+                                            "numeroAntiVol": "1111ZE"
                                         }
                                     }
                                 }
@@ -44,7 +74,13 @@
                                 },
                                 "examples": {
                                     "exemple1": {
-                                        "value": "\"some text\""
+                                        "value": "\"XERFD0005\""
+                                    },
+                                    "exemple2": {
+                                        "value": "\"SED4558X\""
+                                    },
+                                    "exemple3": {
+                                        "value": "\"HU44585XS\""
                                     }
                                 }
                             }
@@ -64,16 +100,46 @@
                             "examples": {
                                 "exemple1": {
                                     "value": {
-                                        "personne": {
-                                            "nom": "some text",
-                                            "prenom": "some text",
-                                            "email": "some text"
+                                        "souscripteur": {
+                                            "nom": "La foret",
+                                            "prenom": "Sylvie",
+                                            "email": "sylvie.laforet@gmail.com"
                                         },
                                         "velo": {
-                                            "marque": "some text",
-                                            "modele": "some text",
-                                            "numeroCadre": "some text",
-                                            "numeroAntiVol": "some text"
+                                            "marque": "Peugeot",
+                                            "modele": "Beta1",
+                                            "numeroCadre": "00454545",
+                                            "numeroAntiVol": "55SD"
+                                        }
+                                    }
+                                },
+                                "exemple2": {
+                                    "value": {
+                                        "souscripteur": {
+                                            "nom": "Toufe",
+                                            "prenom": "Mathieu",
+                                            "email": "mathieu.toufe@gmail.com"
+                                        },
+                                        "velo": {
+                                            "marque": "Sony",
+                                            "modele": "ERRR5",
+                                            "numeroCadre": "4545eet",
+                                            "numeroAntiVol": "666"
+                                        }
+                                    }
+                                },
+                                "exemple3": {
+                                    "value": {
+                                        "souscripteur": {
+                                            "nom": "Etoile",
+                                            "prenom": "Olivier",
+                                            "email": "olivier.etoile@gmail.com"
+                                        },
+                                        "velo": {
+                                            "marque": "Renault",
+                                            "modele": "Gold",
+                                            "numeroCadre": "S01255",
+                                            "numeroAntiVol": "1111ZE"
                                         }
                                     }
                                 }
@@ -95,6 +161,20 @@
                                             "montant": 94.21,
                                             "periode": "Trimestriel",
                                             "dateFinValidite": "2021-01-17"
+                                        }
+                                    },
+                                    "exemple2": {
+                                        "value": {
+                                            "montant": 20.25,
+                                            "periode": "Annuel",
+                                            "dateFinValidite": "2023-01-17"
+                                        }
+                                    },
+                                    "exemple3": {
+                                        "value": {
+                                            "montant": 33.75,
+                                            "periode": "Annuel",
+                                            "dateFinValidite": "2022-05-10"
                                         }
                                     }
                                 }
@@ -133,18 +213,18 @@
             "Contrat": {
                 "description": "contrat d'assurance du vélo",
                 "required": [
-                    "personne",
+                    "souscripteur",
                     "velo"
                 ],
                 "type": "object",
                 "properties": {
-                    "personne": {
-                        "$ref": "#/components/schemas/Personne",
-                        "description": "Personne "
-                    },
                     "velo": {
                         "$ref": "#/components/schemas/Velo",
                         "description": "Velo"
+                    },
+                    "souscripteur": {
+                        "$ref": "#/components/schemas/Personne",
+                        "description": "Personne "
                     }
                 }
             },
