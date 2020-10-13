@@ -6,50 +6,31 @@
         "description": "Gestion assurance chiens et chats"
     },
     "paths": {
-        "/contrat/resilier": {
-            "post": {
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/Declaration"
-                            }
-                        }
-                    },
-                    "required": true
-                },
-                "responses": {
-                    "200": {
-
-                    },
-                    "404": {
-
-                    }
-                },
-                "summary": "Résilier un contrat"
-            },
-            "parameters": [
-                {
-                    "examples": {
-                        "exemple1": {
-                            "value": {
-
-                            }
-                        }
-                    },
-                    "name": "numeroContrat",
-                    "description": "",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query",
-                    "required": true
-                }
-            ]
-        },
         "/contrat/consulter": {
             "summary": "Consulter un contrat pour un numéro de contrat",
             "get": {
+                "parameters": [
+                    {
+                        "examples": {
+                            "exemple1": {
+                                "value": "\"00XE4555\""
+                            },
+                            "exemple2": {
+                                "value": "\"000XERF45\""
+                            },
+                            "exemple3": {
+                                "value": "\"55ERF5545\""
+                            }
+                        },
+                        "name": "numero",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "content": {
@@ -60,17 +41,43 @@
                                 "examples": {
                                     "exemple1": {
                                         "value": {
-                                            "numero": "some text",
                                             "souscripteur": {
-                                                "nom": "some text",
-                                                "prenom": "some text",
-                                                "dateNaissance": "2018-01-17"
+                                                "nom": "La porte",
+                                                "prenom": "Pierre",
+                                                "email": "pierre.laporte@gmail.com"
                                             },
-                                            "velo": {
-                                                "marque": "some text",
-                                                "modele": "some text",
-                                                "numeroCadre": "some text",
-                                                "numeroAntiVol": "some text"
+                                            "animal": {
+                                                "type": "Chien",
+                                                "dateNaissance": "2017-01-10",
+                                                "race": "caniche"
+                                            }
+                                        }
+                                    },
+                                    "exemple2": {
+                                        "value": {
+                                            "souscripteur": {
+                                                "nom": "Dupont",
+                                                "prenom": "Prenom",
+                                                "email": "jean.dupont@gmail.com"
+                                            },
+                                            "animal": {
+                                                "type": "Chien",
+                                                "dateNaissance": "2018-01-10",
+                                                "race": "teckel"
+                                            }
+                                        }
+                                    },
+                                    "exemple3": {
+                                        "value": {
+                                            "souscripteur": {
+                                                "nom": "Olqui",
+                                                "prenom": "Sophie",
+                                                "email": "sophie.olqui@gmail.com"
+                                            },
+                                            "animal": {
+                                                "type": "Chat",
+                                                "dateNaissance": "2017-08-05",
+                                                "race": "Persan"
                                             }
                                         }
                                     }
@@ -102,44 +109,6 @@
                 }
             ]
         },
-        "/contrats/rechercher": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "type": "array",
-                                    "items": {
-                                        "$ref": "#/components/schemas/Contrat"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "Liste de contrats pour les critères de recherche"
-                    }
-                },
-                "summary": "Rechercher des contrats en fonction du nom et du prénom d'une personne"
-            },
-            "parameters": [
-                {
-                    "name": "nom",
-                    "description": "Nom d'une personne ayant souscrit un contrat",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                },
-                {
-                    "name": "prenom",
-                    "description": "Prenom d'une personne ayant souscrit un contrat",
-                    "schema": {
-                        "type": "string"
-                    },
-                    "in": "query"
-                }
-            ]
-        },
         "/sinistre/declarer": {
             "post": {
                 "requestBody": {
@@ -147,6 +116,26 @@
                         "application/json": {
                             "schema": {
                                 "$ref": "#/components/schemas/Declaration"
+                            },
+                            "examples": {
+                                "exemple1": {
+                                    "value": {
+                                        "numercoContrat": "000XE555",
+                                        "dateSinistre": "2018-02-10T09:30Z"
+                                    }
+                                },
+                                "exemple2": {
+                                    "value": {
+                                        "numercoContrat": "XEDF55",
+                                        "dateSinistre": "2018-02-10T09:30Z"
+                                    }
+                                },
+                                "exemple3": {
+                                    "value": {
+                                        "numercoContrat": "XERFD",
+                                        "dateSinistre": "2018-02-10T09:30Z"
+                                    }
+                                }
                             }
                         }
                     },
@@ -158,6 +147,23 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/Sinistre"
+                                },
+                                "examples": {
+                                    "exemple1": {
+                                        "value": {
+                                            "numeroSinistre": "04585"
+                                        }
+                                    },
+                                    "exemple2": {
+                                        "value": {
+                                            "numeroSinistre": "458669"
+                                        }
+                                    },
+                                    "exemple3": {
+                                        "value": {
+                                            "numeroSinistre": "485952"
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -220,39 +226,12 @@
                     }
                 }
             },
-            "Velo": {
-                "description": "Le vélo du contrat",
-                "required": [
-                    "marque",
-                    "numeroCadre",
-                    "numeroAntiVol"
-                ],
-                "type": "object",
-                "properties": {
-                    "marque": {
-                        "description": "Marque du vélo",
-                        "type": "string"
-                    },
-                    "modele": {
-                        "description": "Modele du vélo",
-                        "type": "string"
-                    },
-                    "numeroCadre": {
-                        "description": "Numéro de cadre du vélo",
-                        "type": "string"
-                    },
-                    "numeroAntiVol": {
-                        "description": "Numéro d'anti vol",
-                        "type": "string"
-                    }
-                }
-            },
             "Contrat": {
                 "description": "",
                 "required": [
                     "numero",
                     "souscripteur",
-                    "velo"
+                    "animal"
                 ],
                 "type": "object",
                 "properties": {
@@ -264,8 +243,8 @@
                         "$ref": "#/components/schemas/Personne",
                         "description": ""
                     },
-                    "velo": {
-                        "$ref": "#/components/schemas/Velo",
+                    "animal": {
+                        "$ref": "#/components/schemas/Animal",
                         "description": ""
                     }
                 }
@@ -289,6 +268,33 @@
                     },
                     "dateNaissance": {
                         "format": "date",
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Animal": {
+                "description": "Animal",
+                "required": [
+                    "type",
+                    "dateNaissance"
+                ],
+                "type": "object",
+                "properties": {
+                    "type": {
+                        "description": "Chien ou Chat",
+                        "enum": [
+                            "Chat",
+                            "Chient"
+                        ],
+                        "type": "string"
+                    },
+                    "dateNaissance": {
+                        "format": "date",
+                        "description": "",
+                        "type": "string"
+                    },
+                    "race": {
                         "description": "",
                         "type": "string"
                     }
