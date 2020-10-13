@@ -6,7 +6,7 @@
         "description": "Distribution assurance vélo électrique"
     },
     "paths": {
-        "/contrat/souscrire": {
+        "/velo/contrat/souscrire": {
             "post": {
                 "requestBody": {
                     "content": {
@@ -89,7 +89,7 @@
                 }
             }
         },
-        "/contrat/tarifer/": {
+        "/velo/contrat/tarifer/": {
             "post": {
                 "requestBody": {
                     "content": {
