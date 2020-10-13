@@ -9,6 +9,28 @@
         "/velo/contrat/consulter": {
             "summary": "Consulter un contrat pour un numéro de contrat",
             "get": {
+                "parameters": [
+                    {
+                        "examples": {
+                            "exemple1": {
+                                "value": "\"00XE444E\""
+                            },
+                            "exemple2": {
+                                "value": "\"00XCSD55\""
+                            },
+                            "exemple3": {
+                                "value": "\"0125SSZD5\""
+                            }
+                        },
+                        "name": "numero",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "content": {
