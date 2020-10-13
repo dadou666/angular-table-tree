@@ -7,6 +7,7 @@
     },
     "paths": {
         "/nvei/contrat/souscrire": {
+            "summary": "Souscrire une assurance pour un NVEI",
             "post": {
                 "requestBody": {
                     "content": {
@@ -81,6 +82,7 @@
             }
         },
         "/nvei/contrat/tarifer/": {
+            "summary": "Obtenir un tarif pour assurer un NVEI",
             "post": {
                 "requestBody": {
                     "content": {
