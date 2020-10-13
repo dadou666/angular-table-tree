@@ -9,6 +9,28 @@
         "/nvei/contrat/consulter": {
             "summary": "Consulter un contrat pour un numéro de contrat",
             "get": {
+                "parameters": [
+                    {
+                        "examples": {
+                            "exemple1": {
+                                "value": "\"XERFDD\""
+                            },
+                            "exemple2": {
+                                "value": "\"XER4585\""
+                            },
+                            "exemple3": {
+                                "value": "\"XER666\""
+                            }
+                        },
+                        "name": "numero",
+                        "description": "",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "query",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "content": {
