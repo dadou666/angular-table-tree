@@ -7,6 +7,7 @@
     },
     "paths": {
         "/velo/contrat/souscrire": {
+            "summary": "Souscrire une assurance pour un vélo",
             "post": {
                 "requestBody": {
                     "content": {
@@ -90,6 +91,7 @@
             }
         },
         "/velo/contrat/tarifer/": {
+            "summary": "Obtenir un tarif pour assurer un vélo",
             "post": {
                 "requestBody": {
                     "content": {
