@@ -6,7 +6,7 @@
         "description": "Distribution assurance chiens et chats"
     },
     "paths": {
-        "/contrat/souscrire": {
+        "/animal/contrat/souscrire/": {
             "post": {
                 "requestBody": {
                     "content": {
@@ -86,7 +86,7 @@
                 }
             }
         },
-        "/contrat/tarifer/": {
+        "/animal/contrat/tarifer/": {
             "post": {
                 "requestBody": {
                     "content": {
