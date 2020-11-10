@@ -1,0 +1,138 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Produit d'assurance d'animaux",
+        "description": "Souscription une assurance pour un animal ",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "paths": {
+        "/velo/souscrire": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "*/*": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SouscriptionAnimal"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ContratAnimal"
+                                }
+                            }
+                        },
+                        "description": "default response"
+                    }
+                },
+                "operationId": "souscrire",
+                "summary": "Souscrire un contrat d'assurance pour un objet de risque",
+                "description": "Souscrire un contrat d'assurance pour un objet de risque"
+            }
+        },
+        "/velo/tarifer": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "*/*": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SouscriptionAnimal"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TarifAnimal"
+                                }
+                            }
+                        },
+                        "description": "default response"
+                    }
+                },
+                "operationId": "tarifer",
+                "summary": "Donner un tarif pour assurer un objet de risque",
+                "description": "Donner un tarif pour assurer un objet de risque"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Animal": {
+                "type": "object",
+                "properties": {
+                    "typeAnimal": {
+                        "enum": [
+                            "Chien",
+                            "Chat"
+                        ],
+                        "type": "string"
+                    },
+                    "dateNaissance": {
+                        "format": "date-time",
+                        "type": "string"
+                    }
+                }
+            },
+            "ContratAnimal": {
+                "type": "object",
+                "properties": {
+                    "numero": {
+                        "type": "string"
+                    },
+                    "personne": {
+                        "$ref": "#/components/schemas/Personne"
+                    },
+                    "objet": {
+                        "$ref": "#/components/schemas/Animal"
+                    }
+                }
+            },
+            "Personne": {
+                "type": "object"
+            },
+            "SouscriptionAnimal": {
+                "type": "object",
+                "properties": {
+                    "personne": {
+                        "$ref": "#/components/schemas/Personne"
+                    },
+                    "objetDuRisque": {
+                        "$ref": "#/components/schemas/Animal"
+                    }
+                }
+            },
+            "TarifAnimal": {
+                "type": "object",
+                "properties": {
+                    "periode": {
+                        "enum": [
+                            "Annuel",
+                            "Mensuel",
+                            "Trimestriel"
+                        ],
+                        "type": "string"
+                    },
+                    "montant": {
+                        "format": "float",
+                        "type": "number"
+                    }
+                }
+            }
+        }
+    }
+}
