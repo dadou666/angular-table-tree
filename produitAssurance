@@ -1,0 +1,125 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "Produit d'assurance ",
+        "description": "Ce produit permet de souscrire et de tarifer",
+        "termsOfService": "http://swagger.io/terms/",
+        "contact": {
+            "email": "apiteam@swagger.io"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "paths": {
+        "/velo/tarifer": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "*/*": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SouscriptionVelo"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TarifVelo"
+                                }
+                            }
+                        },
+                        "description": "default response"
+                    }
+                },
+                "operationId": "tarifer",
+                "summary": "Donner un tarif pour assurer pour un objet de risque",
+                "description": "Donner un tarif pour assurer pour un objet de risque"
+            }
+        },
+        "/velo/souscrire": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "*/*": {
+                            "schema": {
+                                "$ref": "#/components/schemas/SouscriptionVelo"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "default": {
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ContratVelo"
+                                }
+                            }
+                        },
+                        "description": "default response"
+                    }
+                },
+                "operationId": "souscrire",
+                "summary": "Souscrire un contrat d'assurance pour un objet de risque",
+                "description": "Souscrire un contrat d'assurance pour un objet de risque"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "TarifVelo": {
+                "type": "object",
+                "properties": {
+                    "periode": {
+                        "enum": [
+                            "Annuel",
+                            "Mensuel",
+                            "Trimestriel"
+                        ],
+                        "type": "string"
+                    },
+                    "montant": {
+                        "format": "float",
+                        "type": "number"
+                    }
+                }
+            },
+            "Personne": {
+                "type": "object"
+            },
+            "SouscriptionVelo": {
+                "type": "object",
+                "properties": {
+                    "personne": {
+                        "$ref": "#/components/schemas/Personne"
+                    },
+                    "objetDuRisque": {
+                        "$ref": "#/components/schemas/Velo"
+                    }
+                }
+            },
+            "Velo": {
+                "type": "object"
+            },
+            "ContratVelo": {
+                "type": "object",
+                "properties": {
+                    "numero": {
+                        "type": "string"
+                    },
+                    "personne": {
+                        "$ref": "#/components/schemas/Personne"
+                    },
+                    "objet": {
+                        "$ref": "#/components/schemas/Velo"
+                    }
+                }
+            }
+        }
+    }
+}
