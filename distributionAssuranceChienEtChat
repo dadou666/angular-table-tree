@@ -82,10 +82,12 @@
                                     }
                                 }
                             }
-                        }
+                        },
+                        "description": "Retour du service"
                     }
                 },
-                "summary": "Souscrire une assurance pour un chien ou un chat"
+                "summary": "Souscrire une assurance pour un chien ou un chat",
+                "description": "Description"
             }
         },
         "/animal/contrat/tarifer/": {
@@ -176,7 +178,8 @@
                                     }
                                 }
                             }
-                        }
+                        },
+                        "description": "Retour du service"
                     }
                 },
                 "summary": "Obtenir un tarif pour une assurer un chien ou un chat"
